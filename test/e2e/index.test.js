@@ -8,7 +8,7 @@ let nuxt = null
 
 // Init Nuxt.js and start listening on localhost:4000
 test.before('Init Nuxt.js', async t => {
-  const rootDir = resolve(__dirname, '..')
+  const rootDir = resolve(__dirname, '../..')
   let config = {}
   try { config = require(resolve(rootDir, 'nuxt.config.js')) } catch (e) {}
   config.rootDir = rootDir // project folder
