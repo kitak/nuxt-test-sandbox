@@ -1,16 +1,18 @@
 
 import test from 'ava'
+import rewiremock from 'rewiremock'
 import { mount } from '@vue/test-utils'
-import List from '../../components/List'
+import List2 from '../../components/List2'
+import sinon from 'sinon'
+import * as a from '../../utils/a'
 
-let wrapper
-
-const list = ['Coffee', 'Tea', 'Snicker', 'Mars']
+let wrapper, stub
+const list = ['foo', 'bar', 'baz'];
 
 test.beforeEach(() => {
-  wrapper = mount(List, {
-    propsData: { list },
-  })
+  stub = sinon.stub(a, 'b').returns(list)
+  console.log(a.default());
+  wrapper = mount(List2)
 })
 
 test('List.vue shapshow', (t) => {
@@ -25,4 +27,8 @@ test('List.vue to display list', (t) => {
   $items.forEach(($item, index) => {
     t.is($item.text(), list[index])
   })
+})
+
+test.afterEach(() => {
+  stub.restore()
 })
